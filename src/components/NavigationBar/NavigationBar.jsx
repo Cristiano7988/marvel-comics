@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const tabs = ["Characters", "Comics", "Creators", "Events"];
+const tabs = ["Characters", "Comics", "Creators", "Events", "Series"];
 
 const NavigationBar = () => {
   return (
