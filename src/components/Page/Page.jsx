@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getData } from "../../services/functions";
-import Li from "../Li";
+import { Card, Grid, GridItem, Picture, Image, ContainerTitle, H2, H1 } from "../Styles/Styles";
 
 const Page = ({ endpoint, defaultValue }) => {
   const [title, setTitle] = useState(endpoint);
@@ -14,7 +14,7 @@ const Page = ({ endpoint, defaultValue }) => {
     setTitle(endpoint);
     setRequest(defaultValue.request);
     setList(defaultValue.list);
-  });
+  }, [title, endpoint, defaultValue.request, defaultValue.list]);
 
   useEffect(() => {
     if (request.code === 200) return;
@@ -25,34 +25,40 @@ const Page = ({ endpoint, defaultValue }) => {
       setList(results);
       setMessage(message);
     });
-  });
+  }, [endpoint, list, request.code]);
   return (
     <>
-      <h1 style={{ textTransform: "capitalize" }}>{endpoint}</h1>
+      <H1>{endpoint}</H1>
       {message && <p>{message}</p>}
       {list && (
-        <ul>
+        <Grid>
           {list.map((item) => {
             const id = item.id;
             const title = item.name || item.title || item.fullName;
-            const description = item.description || item.variantDescription;
             const thumbnail =
               item.thumbnail &&
               item.thumbnail.path + "." + item.thumbnail.extension;
 
             return (
               id && (
-                <Li key={id}>
-                  {title && <p>{title}</p>}
-                  {description && <p>{description}</p>}
-                  {thumbnail && (
-                    <img src={thumbnail} alt={title} title={title} />
-                  )}
-                </Li>
+                <GridItem key={id}>
+                  <Card>
+                    {thumbnail && (
+                      <Picture>
+                        <Image src={thumbnail} alt={title} title={title} />
+                      </Picture>
+                    )}
+                    {title && (
+                      <ContainerTitle positionAbsolute={endpoint !== "stories"}>
+                        <H2>{title}</H2>
+                      </ContainerTitle>
+                    )}
+                  </Card>
+                </GridItem>
               )
             );
           })}
-        </ul>
+        </Grid>
       )}
       {request && (
         <button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
