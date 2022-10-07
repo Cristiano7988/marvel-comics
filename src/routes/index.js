@@ -4,6 +4,7 @@ import Characters from "../components/Characters";
 import NavigationBar from "../components/NavigationBar";
 import Creators from "../components/Creators";
 import Events from "../components/Events";
+import Series from "../components/Series";
 
 const RouteElement = () => <Router>
     <NavigationBar />
@@ -13,6 +14,7 @@ const RouteElement = () => <Router>
         <Route element={<Comics />} path="/comics" />
         <Route element={<Creators />} path="/creators" />
         <Route element={<Events />} path="/events" />
+        <Route element={<Series />} path="/series" />
     </Routes>
 </Router>
 
