@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-
-const tabs = ["Characters", "Comics", "Creators", "Events", "Series", "Stories"];
+import tabs from "../../static/tabs.json";
 
 const NavigationBar = () => {
   return (
@@ -8,8 +7,9 @@ const NavigationBar = () => {
       {tabs.map((tab, index) => (
         <li key={index}>
           <Link
+            style={{textTransform: "capitalize"}}
             children={tab}
-            to={"/" + tab.toLowerCase()}
+            to={"/" + tab}
             className="App-link"
           />
         </li>
