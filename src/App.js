@@ -1,12 +1,12 @@
-import './App.css';
-import RouteElement from './routes';
+import RouteElement from "./routes";
+import { AppMain } from "./components/Styles/Styles";
 
 function App() {
   return (
-    <div className="App">
-      <main className="App-main">
+    <div>
+      <AppMain>
         <RouteElement />
-      </main>
+      </AppMain>
     </div>
   );
 }

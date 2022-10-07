@@ -1,21 +1,15 @@
-import { Link } from "react-router-dom";
 import tabs from "../../static/tabs.json";
-import Li from "../Li";
+import { Ul, Li, AppLink } from "../Styles/Styles";
 
 const NavigationBar = () => {
   return (
-    <ul>
+    <Ul>
       {tabs.map((tab, index) => (
         <Li key={index}>
-          <Link
-            style={{textTransform: "capitalize"}}
-            children={tab}
-            to={"/" + tab}
-            className="App-link"
-          />
+          <AppLink children={tab} to={"/" + tab} />
         </Li>
       ))}
-    </ul>
+    </Ul>
   );
 };
 
