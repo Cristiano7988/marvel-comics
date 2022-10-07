@@ -1,12 +1,12 @@
 import './App.css';
-import Comics from "./components/Comics";
+import RouteElement from './routes';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Comics />
-      </header>
+      <main className="App-main">
+        <RouteElement />
+      </main>
     </div>
   );
 }
