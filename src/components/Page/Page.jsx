@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getData } from "../../services/functions";
+import Li from "../Li";
 
 const Page = ({ endpoint, defaultValue }) => {
   const [title, setTitle] = useState(endpoint);
@@ -41,13 +42,13 @@ const Page = ({ endpoint, defaultValue }) => {
 
             return (
               id && (
-                <li key={id}>
+                <Li key={id}>
                   {title && <p>{title}</p>}
                   {description && <p>{description}</p>}
                   {thumbnail && (
                     <img src={thumbnail} alt={title} title={title} />
                   )}
-                </li>
+                </Li>
               )
             );
           })}
