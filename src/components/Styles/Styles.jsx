@@ -1,7 +1,31 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LogoImage from "../../static/marvel-logo.png";
 
-const AppMain = styled.main`
+const Header = styled.div`
+    &, div {
+      width: 100%;
+      height: 300px;
+      background-color: rgb(139 0 0 / 50%);
+    }
+
+    div {
+      position: absolute;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    `,
+    Logo = styled.div`
+    background-image: url(${LogoImage});
+    background-position: center;
+
+  `,
+  BackgroundImageForTheLogo = styled.div`
+    background-image: url(${({image}) => image});
+    background-position: ${({position}) => position};
+
+  `,
+  AppMain = styled.main`
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -106,6 +130,9 @@ const AppMain = styled.main`
   `;
 
 export {
+  Header,
+  Logo,
+  BackgroundImageForTheLogo,
   AppMain,
   AppLink,
   H1,
