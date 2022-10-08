@@ -1,17 +1,37 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LogoImage from "../../static/marvel-logo.png";
 
-const AppMain = styled.main`
-    background-color: #282c34;
+const Header = styled.div`
+    &, div {
+      width: 100%;
+      height: 300px;
+      background-color: rgb(139 0 0 / 50%);
+    }
+
+    div {
+      position: absolute;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  `,
+  Logo = styled.div`
+    background-image: url(${LogoImage});
+    background-position: center;
+  `,
+  BackgroundImageForTheLogo = styled.div`
+    background-image: url(${({ image }) => image});
+    background-position: ${({ position }) => position};
+  `,
+  AppMain = styled.main`
+    background-color: white;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: black;
+    text-align: center;
   `,
   AppLink = styled(Link)`
-    color: #61dafb;
+    color: black;
     text-decoration: none;
     font-size: 4.5vmin;
     text-transform: capitalize;
@@ -21,6 +41,7 @@ const AppMain = styled.main`
   `,
   Ul = styled.ul`
     padding: 0;
+    margin: 0;
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -29,6 +50,21 @@ const AppMain = styled.main`
     list-style: none;
     overflow: hidden;
     border-radius: 5px;
+    padding: 1vw;
+
+    &:hover {
+      background: darkred;
+      a {
+        color: white;
+      }
+    }
+    
+    &:active {
+      background: brown;
+      a {
+        color: white;
+      }
+    }
   `,
   Grid = styled(Ul)`
     grid-template-columns: 1fr 1fr;
@@ -67,9 +103,11 @@ const AppMain = styled.main`
     ${({ positionAbsolute }) => positionAbsolute && "position: absolute"}
   `,
   GridItem = styled(Li)`
-    background: black;
+    background: darkred;
     box-shadow: 1px 1px 25px black;
     margin: 20px;
+    padding: unset;
+    color: white;
 
     &:hover {
       box-shadow: 1px 1px 10px black;
@@ -106,6 +144,9 @@ const AppMain = styled.main`
   `;
 
 export {
+  Header,
+  Logo,
+  BackgroundImageForTheLogo,
   AppMain,
   AppLink,
   H1,
