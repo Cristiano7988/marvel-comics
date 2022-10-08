@@ -50,10 +50,17 @@ const Header = styled.div`
     list-style: none;
     overflow: hidden;
     border-radius: 5px;
-    padding: 20px;
+    padding: 1vw;
 
     &:hover {
       background: darkred;
+      a {
+        color: white;
+      }
+    }
+    
+    &:active {
+      background: brown;
       a {
         color: white;
       }
