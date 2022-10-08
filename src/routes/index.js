@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import Page from "../components/Page";
 import endpoints from "../static/tabs.json";
 
-const RouteElement = () => <Router>
+const RouteElement = () => <Router basename={process.env.PUBLIC_URL}>
     <NavigationBar />
 
     <Routes>
