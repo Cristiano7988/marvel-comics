@@ -14,28 +14,24 @@ const Header = styled.div`
       background-size: cover;
       background-repeat: no-repeat;
     }
-    `,
-    Logo = styled.div`
+  `,
+  Logo = styled.div`
     background-image: url(${LogoImage});
     background-position: center;
-
   `,
   BackgroundImageForTheLogo = styled.div`
-    background-image: url(${({image}) => image});
-    background-position: ${({position}) => position};
-
+    background-image: url(${({ image }) => image});
+    background-position: ${({ position }) => position};
   `,
   AppMain = styled.main`
-    background-color: #282c34;
+    background-color: white;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: black;
+    text-align: center;
   `,
   AppLink = styled(Link)`
-    color: #61dafb;
+    color: black;
     text-decoration: none;
     font-size: 4.5vmin;
     text-transform: capitalize;
@@ -45,6 +41,7 @@ const Header = styled.div`
   `,
   Ul = styled.ul`
     padding: 0;
+    margin: 0;
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -53,6 +50,14 @@ const Header = styled.div`
     list-style: none;
     overflow: hidden;
     border-radius: 5px;
+    padding: 20px;
+
+    &:hover {
+      background: darkred;
+      a {
+        color: white;
+      }
+    }
   `,
   Grid = styled(Ul)`
     grid-template-columns: 1fr 1fr;
@@ -91,9 +96,11 @@ const Header = styled.div`
     ${({ positionAbsolute }) => positionAbsolute && "position: absolute"}
   `,
   GridItem = styled(Li)`
-    background: black;
+    background: darkred;
     box-shadow: 1px 1px 25px black;
     margin: 20px;
+    padding: unset;
+    color: white;
 
     &:hover {
       box-shadow: 1px 1px 10px black;
