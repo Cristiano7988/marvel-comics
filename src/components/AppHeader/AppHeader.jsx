@@ -22,7 +22,7 @@ const AppHeader = () => {
 
   return (
     <Header>
-      {list.map(
+      {list && list.map(
         (item, index) =>
           randomIndex === index && (
             <BackgroundImageForTheLogo
