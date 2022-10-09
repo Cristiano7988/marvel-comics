@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../../services/functions";
 import { Card, Grid, GridItem, Picture, Image, ContainerTitle, H2, H1 } from "../Styles/Styles";
 
-const Page = ({ endpoint, defaultValue }) => {
+const Page = ({ endpoint, defaultValue, privateKey }) => {
   const [title, setTitle] = useState(endpoint);
   const [request, setRequest] = useState(defaultValue.request);
   const [list, setList] = useState(defaultValue.list);
@@ -20,7 +20,7 @@ const Page = ({ endpoint, defaultValue }) => {
     if (request.code === 200) return;
     if (list) return;
 
-    getData(endpoint).then(({ data, results, message }) => {
+    getData(endpoint, privateKey).then(({ data, results, message }) => {
       setRequest(data);
       setList(results);
       setMessage(message);

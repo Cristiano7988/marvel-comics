@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import Page from "../components/Page";
 import endpoints from "../static/tabs.json";
 
-const RouteElement = () => <Router basename={process.env.PUBLIC_URL}>
+const RouteElement = ({privateKey}) => <Router basename={process.env.PUBLIC_URL}>
     <NavigationBar />
 
     <Routes>
@@ -13,6 +13,7 @@ const RouteElement = () => <Router basename={process.env.PUBLIC_URL}>
                 path={"/" + endpoint}
                 element={
                     <Page
+                        privateKey={privateKey}
                         endpoint={endpoint}
                         defaultValue={{list: false, request: false}}
                     />

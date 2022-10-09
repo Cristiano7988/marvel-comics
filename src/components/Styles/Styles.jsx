@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LogoImage from "../../static/marvel-logo.png";
 
-const Header = styled.div`
+const
+  InputContainer = styled.div`
+    text-align: right;
+  `,
+  Header = styled.div`
     &, div {
       width: 100%;
       height: 300px;
@@ -144,6 +148,7 @@ const Header = styled.div`
   `;
 
 export {
+  InputContainer,
   Header,
   Logo,
   BackgroundImageForTheLogo,

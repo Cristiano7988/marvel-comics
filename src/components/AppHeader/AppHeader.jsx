@@ -5,13 +5,13 @@ import { BackgroundImageForTheLogo, Header, Logo } from "../Styles/Styles";
 const generateRandomIndex = (array = 5) => Math.floor(Math.random() * (array.length));
 const positions = ["top", "center", "bottom"];
 
-const AppHeader = () => {
+const AppHeader = ({privateKey}) => {
   const [randomIndex, setRandomIndex] = useState(generateRandomIndex());
   const [position, setPosition] = useState(positions[generateRandomIndex(positions)])
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    getData("events").then(({ results }) => {
+    getData("events", privateKey).then(({ results }) => {
       setList(results);
       setInterval(() => {
         setRandomIndex(generateRandomIndex(results))
