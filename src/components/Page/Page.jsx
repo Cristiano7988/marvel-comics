@@ -37,7 +37,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
             const title = item.name || item.title || item.fullName;
             const thumbnail =
               item.thumbnail &&
-              item.thumbnail.path + "." + item.thumbnail.extension;
+              item.thumbnail.path.replace('http', 'https') + "." + item.thumbnail.extension;
 
             return (
               id && (
