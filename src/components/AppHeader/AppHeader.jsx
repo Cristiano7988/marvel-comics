@@ -27,7 +27,7 @@ const AppHeader = ({privateKey}) => {
           randomIndex === index && (
             <BackgroundImageForTheLogo
               key={index}
-              image={list[index].thumbnail.path+"."+list[index].thumbnail.extension}
+              image={list[index].thumbnail.path.replace('http', 'https')+"."+list[index].thumbnail.extension}
               position={position}
             />
           )
