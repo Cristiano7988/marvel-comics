@@ -1,0 +1,20 @@
+[
+    {
+        "endpoint": "characters"
+    },
+    {
+        "endpoint": "comics"
+    },
+    {
+        "endpoint": "creators"
+    },
+    {
+        "endpoint": "events"
+    },
+    {
+        "endpoint": "series"
+    },
+    {
+        "endpoint": "stories"
+    }
+]
