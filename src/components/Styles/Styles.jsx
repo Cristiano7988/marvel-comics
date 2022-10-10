@@ -5,10 +5,14 @@ import ReactPaginate from "react-paginate";
 
 const Paginate = styled(ReactPaginate)`
     list-style: none;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     padding: unset;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    width: 100%;
+    margin: unset;
 
     li {
       border: 1px solid darkred;
@@ -23,6 +27,7 @@ const Paginate = styled(ReactPaginate)`
       }
 
       a {
+        cursor: pointer;
         padding: 10px 2vw;
         line-height: 20px;
       }
