@@ -4,11 +4,11 @@ import api from "./api";
 const ts = 1;
 const apikey = "8d7e60f2770d01565b53d2344c7556be";
 
-const getData = (endpoint, privateKey) => {
+const getData = (endpoint, privateKey, offset) => {
   const hash = md5(ts + privateKey + apikey);
 
   return api
-    .get(endpoint, { params: { ts, apikey, hash } })
+    .get(endpoint, { params: { ts, apikey, hash, offset } })
     .then((response) => {
       if (response.status !== 200) return;
       const { data } = response;
