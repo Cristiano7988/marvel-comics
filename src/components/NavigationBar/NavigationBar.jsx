@@ -3,13 +3,15 @@ import { Ul, Li, AppLink } from "../Styles/Styles";
 
 const NavigationBar = () => {
   return (
-    <Ul>
-      {tabs.map((tab, index) => (
-        <Li key={index}>
-          <AppLink children={tab} to={"/" + tab} />
-        </Li>
-      ))}
-    </Ul>
+    <nav>
+      <Ul>
+        {tabs.map((tab, index) => (
+          <Li key={index}>
+            <AppLink children={tab} to={"/" + tab} />
+          </Li>
+        ))}
+      </Ul>
+    </nav>
   );
 };
 
