@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { getData } from "../../services/functions";
-import { Card, Grid, GridItem, Picture, Image, ContainerTitle, H2, H1 } from "../Styles/Styles";
+import {
+  Card,
+  Grid,
+  GridItem,
+  Picture,
+  Image,
+  ContainerTitle,
+  H2,
+  H1,
+  Paginate,
+} from "../Styles/Styles";
 
 const Page = ({ endpoint, defaultValue, privateKey }) => {
   const [title, setTitle] = useState(endpoint);
@@ -26,6 +36,19 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
       setMessage(message);
     });
   }, [endpoint, list, request.code]);
+
+  const handlePageClick = ({selected}) => {
+    setList([]);
+
+    getData(endpoint, privateKey, selected * request.data.limit).then(({ data, results, message }) => {
+      setRequest(data);
+      setList(results);
+      setMessage(message);
+    });
+  };
+
+  
+
   return (
     <>
       <H1>{endpoint}</H1>
@@ -37,7 +60,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
             const title = item.name || item.title || item.fullName;
             const thumbnail =
               item.thumbnail &&
-              item.thumbnail.path.replace('http', 'https') + "." + item.thumbnail.extension;
+              item.thumbnail.path.replace("http", "https") + "." + item.thumbnail.extension;
 
             return (
               id && (
@@ -60,6 +83,14 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
           })}
         </Grid>
       )}
+      {request && <Paginate
+        nextLabel=">"
+        previousLabel="<"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={0}
+        marginPagesDisplayed={1}
+        pageCount={Math.ceil(request.data.total / request.data.limit)}
+      />}
       {request && (
         <button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
       )}

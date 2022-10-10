@@ -1,13 +1,51 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LogoImage from "../../static/marvel-logo.png";
+import ReactPaginate from "react-paginate";
 
-const
+const Paginate = styled(ReactPaginate)`
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: unset;
+
+    li {
+      border: 1px solid darkred;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px black;
+      display: flex;
+
+      &.disabled,
+      &.break {
+        display: none;
+      }
+
+      a {
+        padding: 10px 2vw;
+        line-height: 20px;
+      }
+
+      &.selected,
+      &:active {
+        background: brown;
+        color: white;
+        box-shadow: 0 0 0 black;
+      }
+
+      &:hover {
+        background: darkred;
+        color: white;
+      }
+    }
+  `,
   InputContainer = styled.div`
     text-align: right;
   `,
   Header = styled.div`
-    &, div {
+    &,
+    div {
       width: 100%;
       height: 300px;
       background-color: rgb(139 0 0 / 50%);
@@ -62,7 +100,7 @@ const
         color: white;
       }
     }
-    
+
     &:active {
       background: brown;
       a {
@@ -148,6 +186,7 @@ const
   `;
 
 export {
+  Paginate,
   InputContainer,
   Header,
   Logo,
