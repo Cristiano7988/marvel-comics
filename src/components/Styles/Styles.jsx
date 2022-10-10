@@ -113,6 +113,16 @@ const Paginate = styled(ReactPaginate)`
       }
     }
   `,
+  Nav = styled.nav`
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+
+  ${Li} {
+    margin: 10px 0;
+  }
+`,
   Grid = styled(Ul)`
     grid-template-columns: 1fr 1fr;
     display: grid;
@@ -201,6 +211,7 @@ export {
   H1,
   Ul,
   Li,
+  Nav,
   Grid,
   Card,
   Picture,

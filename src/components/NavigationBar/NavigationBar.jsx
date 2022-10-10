@@ -1,9 +1,9 @@
 import tabs from "../../static/tabs.json";
-import { Ul, Li, AppLink } from "../Styles/Styles";
+import { Ul, Li, AppLink, Nav } from "../Styles/Styles";
 
 const NavigationBar = () => {
   return (
-    <nav>
+    <Nav>
       <Ul>
         {tabs.map((tab, index) => (
           <Li key={index}>
@@ -11,7 +11,7 @@ const NavigationBar = () => {
           </Li>
         ))}
       </Ul>
-    </nav>
+    </Nav>
   );
 };
 
