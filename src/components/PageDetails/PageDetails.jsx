@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import { getData } from "../../services/functions";
 import Detail from "../Detail/Detail";
 import {
+  Button,
   GiantCard,
   GiantCardContent,
   GiantPicture,
   Image,
+  Message,
 } from "../Styles/Styles";
 
 const PageDetails = ({ endpoint, privateKey }) => {
@@ -35,7 +37,7 @@ const PageDetails = ({ endpoint, privateKey }) => {
   return (
     <>
       {title && <h1>{title}</h1>}
-      {message && <p>{message}</p>}
+      {message && <Message success={false} children={message} />}
       {product && <GiantCard>
         <div>
           {thumbnail && (
@@ -79,7 +81,7 @@ const PageDetails = ({ endpoint, privateKey }) => {
         </div>
       </GiantCard>}
       {request && (
-        <button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
+        <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
       )}
     </>
   );

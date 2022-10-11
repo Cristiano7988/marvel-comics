@@ -10,6 +10,8 @@ import {
   H2,
   H1,
   Paginate,
+  Message,
+  Button,
 } from "../Styles/Styles";
 
 const Page = ({ endpoint, defaultValue, privateKey }) => {
@@ -52,7 +54,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
   return (
     <>
       <H1>{endpoint}</H1>
-      {message && <p>{message}</p>}
+      {message && <Message succes={false} children={message} />}
       {list && (
         <Grid>
           {list.map((item) => {
@@ -91,9 +93,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
         marginPagesDisplayed={1}
         pageCount={Math.ceil(request.data.total / request.data.limit)}
       />}
-      {request && (
-        <button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
-      )}
+      {request && <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />}
     </>
   );
 };
