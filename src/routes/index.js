@@ -1,4 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import ErrorPage from "../components/ErrorPage";
 import NavigationBar from "../components/NavigationBar";
 import Page from "../components/Page";
 import PageDetails from "../components/PageDetails";
@@ -30,6 +31,10 @@ const RouteElement = ({ privateKey }) => (
                 privateKey={privateKey}
               />
             }
+          />
+          <Route
+            path="*"
+            element={<ErrorPage />}
           />
         </Route>
       ))}

@@ -3,7 +3,32 @@ import { Link } from "react-router-dom";
 import LogoImage from "../../static/marvel-logo.png";
 import ReactPaginate from "react-paginate";
 
-const Paginate = styled(ReactPaginate)`
+const
+  Button = styled.button`
+    margin: 10px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  `,
+  Message = styled.div`
+    background: ${({success}) => success ? "Blue" : "Black"};
+    color: white;
+    display: inline-block;
+    padding: 20px;
+    margin: 40px;
+    border-radius: 5px;
+
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  `,
+  Paginate = styled(ReactPaginate)`
     list-style: none;
     display: flex;
     justify-content: center;
@@ -237,6 +262,8 @@ const Paginate = styled(ReactPaginate)`
   `;
 
 export {
+  Button,
+  Message,
   Paginate,
   InputContainer,
   Header,
