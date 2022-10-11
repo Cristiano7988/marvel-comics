@@ -65,7 +65,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
             return (
               id && (
                 <GridItem key={id}>
-                  <Card>
+                  <Card to={ "/" + endpoint + "/" + id }>
                     {thumbnail && (
                       <Picture>
                         <Image src={thumbnail} alt={title} title={title} />
