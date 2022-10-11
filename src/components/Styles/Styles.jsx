@@ -97,7 +97,12 @@ const Paginate = styled(ReactPaginate)`
     list-style: none;
     overflow: hidden;
     border-radius: 5px;
-    padding: 1vw;
+    display: flex;
+
+    a {
+      padding: 1vw;
+      line-height: 1.2;
+    }
 
     &:hover {
       background: darkred;
@@ -135,8 +140,34 @@ const Paginate = styled(ReactPaginate)`
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   `,
-  Card = styled.div`
+  GiantCardContent = styled.div`
+    width: ${({fullSize}) => fullSize ? "90%" : "45%" };
+    padding: 2.5%;
+    text-align: left;
+    float: right;
+
+    a {
+      text-transform: capitalize;
+      color: white;
+    }
+
+    p:first-child {
+      margin-top: 0;
+    }
+  `,
+  GiantCard = styled.div`
+    width: 80%;
+    margin: auto;
+    background: darkred;
+    border-radius: 10px;
+    display: flex;
+    color: white;
+  `,
+  Card = styled(Link)`
     position: relative;
+    display: flex;
+    color: white;
+    text-decoration: none;
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       padding: 20px;
@@ -148,6 +179,11 @@ const Paginate = styled(ReactPaginate)`
   Picture = styled.picture`
     opacity: 0.8;
     display: block;
+  `,
+  GiantPicture = styled(Picture)`
+    width: 45%;
+    padding: 2.5%;
+    float: left;
   `,
   Image = styled.img`
     width: 100%;
@@ -213,7 +249,10 @@ export {
   Li,
   Nav,
   Grid,
+  GiantCardContent,
+  GiantCard,
   Card,
+  GiantPicture,
   Picture,
   Image,
   ContainerTitle,
