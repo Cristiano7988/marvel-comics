@@ -4,7 +4,7 @@ import api from "./api";
 const ts = 1;
 const apikey = "8d7e60f2770d01565b53d2344c7556be";
 
-const getData = (endpoint, privateKey, offset) => {
+const getData = (endpoint, offset, privateKey = "d8a5a0870bfbd36aa551463c3bb67fd2d0cb6c24") => {
   const hash = md5(ts + privateKey + apikey);
 
   return api

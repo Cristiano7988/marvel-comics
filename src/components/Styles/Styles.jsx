@@ -94,6 +94,7 @@ const
   BackgroundImageForTheLogo = styled.div`
     background-image: url(${({ image }) => image});
     background-position: ${({ position }) => position};
+    visibility: ${({show}) => show ? "unset" : "hidden"};
   `,
   AppMain = styled.main`
     background-color: white;
