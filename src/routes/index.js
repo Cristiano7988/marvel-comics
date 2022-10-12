@@ -4,9 +4,10 @@ import NavigationBar from "../components/NavigationBar";
 import Page from "../components/Page";
 import PageDetails from "../components/PageDetails";
 import endpoints from "../static/tabs.json";
+import config from "../config.json";
 
 const RouteElement = () => (
-  <Router basename={process.env.PUBLIC_URL}>
+  <Router basename={config.basename}>
     <NavigationBar />
 
     <Routes>
