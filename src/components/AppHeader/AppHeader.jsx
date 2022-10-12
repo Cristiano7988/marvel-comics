@@ -1,36 +1,35 @@
 import { useEffect, useState } from "react";
-import { getData } from "../../services/functions";
+import useContent from "../../hooks/useContent";
 import { BackgroundImageForTheLogo, Header, Logo } from "../Styles/Styles";
 
-const generateRandomIndex = (array = 5) => Math.floor(Math.random() * (array.length));
+const generateRandomIndex = (array = 5) => Math.floor(Math.random() * array.length);
 const positions = ["top", "center", "bottom"];
 
 const AppHeader = () => {
   const [randomIndex, setRandomIndex] = useState(generateRandomIndex());
-  const [position, setPosition] = useState(positions[generateRandomIndex(positions)])
-  const [list, setList] = useState([]);
+  const [position, setPosition] = useState(positions[generateRandomIndex(positions)]);
+  const [content] = useContent();
 
   useEffect(() => {
-    if(!isNaN(list) || !list) getData("events").then(({ results }) => {
-      setList(results);
+      if (!content?.events?.results?.length) return;
+
       setInterval(() => {
-        setRandomIndex(generateRandomIndex(results))
+        setRandomIndex(generateRandomIndex(content.events.results))
         setPosition(positions[generateRandomIndex(positions)])
       }, 3500);
-    });
   }, []);
 
   return (
     <Header>
-      {list && list.map(
-        (item, index) =>
+      {content?.events?.results &&
+        content.events.results.map((item, index) => (
           <BackgroundImageForTheLogo
             show={randomIndex === index}
             key={index}
-            image={list[index].thumbnail.path.replace('http', 'https')+"."+list[index].thumbnail.extension}
+            image={content.events.results[index].thumbnail.path.replace("http", "https") + "." + content.events.results[index].thumbnail.extension}
             position={position}
           />
-      )}
+        ))}
       <Logo />
     </Header>
   );

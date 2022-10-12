@@ -84,9 +84,7 @@ const PageDetails = ({ endpoint }) => {
           />
         </div>
       </GiantCard>}
-      {request && (
-        <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />
-      )}
+      {request?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />}
     </>
   );
 };
