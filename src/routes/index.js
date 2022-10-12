@@ -5,12 +5,14 @@ import Page from "../components/Page";
 import PageDetails from "../components/PageDetails";
 import endpoints from "../static/tabs.json";
 import config from "../config.json";
+import Home from "../components/Home/Home";
 
 const RouteElement = () => (
   <Router basename={config.basename}>
     <NavigationBar />
 
     <Routes>
+      <Route path="/" element={<Home />} />
       {endpoints.map((endpoint, index) => (
         <Route key={index}>
           <Route
