@@ -18,7 +18,7 @@ const PageDetails = ({ endpoint }) => {
   const [thumbnail, setThumbnail] = useState("");
   const [request, setRequest] = useState(false);
   const [product, setProduct] = useState(false);
-  const [message, setMessage] = useState(false);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,12 +27,12 @@ const PageDetails = ({ endpoint }) => {
     setLoading(true);
 
     getData(endpoint + "/" + id)
-    .then(({ data, results, message }) => {
+    .then(({ data, results, error }) => {
       setRequest(data);
       setProduct(results[0]);
+      setError(error);
       setTitle(results && (results[0].name || results[0].title || results[0].fullName));
       if (results && results[0].thumbnail) setThumbnail(results[0].thumbnail.path.replace("http", "https") + "." + results[0].thumbnail.extension);
-      setMessage(message);
     })
     .then(()=> setLoading(false));
   }, [endpoint, product, request.code]);
@@ -40,7 +40,7 @@ const PageDetails = ({ endpoint }) => {
   return (
     <>
       {title && <h1>{title}</h1>}
-      {message && <Message success={false} children={message} />}
+      {error && <Message success={false} children={error.message} />}
       {loading && <Loading />}
       {product && <GiantCard>
         <div>

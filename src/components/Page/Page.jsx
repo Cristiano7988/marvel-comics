@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Content from "../../contexts/Content";
 import useContent from "../../hooks/useContent";
 import { getData } from "../../services/functions";
@@ -17,25 +17,25 @@ import {
   Loading,
 } from "../Styles/Styles";
 
-const Page = ({ endpoint, defaultValue }) => {
-  const [message, setMessage] = useState(false);
+const Page = ({ endpoint }) => {
   const [loading, setLoading] = useState(false);
   const newContent = useContext(Content);
   const [content, setContent] = useContent(newContent);
 
   const handlePageClick = ({selected}) => {
     content[endpoint].results = [];
+    content[endpoint].offSet = selected * content[endpoint].data.data.limit;
     setContent(content);
     setLoading(true);
 
     getData(endpoint, selected * content[endpoint].data.data.limit)
-    .then(({ data, results, message }) => {
+    .then(({ data, results, error }) => {
       content[endpoint] = {
         results,
-        data
+        data,
+        error
       };
       setContent(content);
-      setMessage(message);
     })
     .then(()=> setLoading(false));
   };
@@ -44,8 +44,8 @@ const Page = ({ endpoint, defaultValue }) => {
 
   return (
     <>
-      <H1>{endpoint}</H1>
-      {message && <Message succes={false} children={message} />}
+      <H1>{endpoint} {content[endpoint]?.selected}</H1>
+      {content[endpoint]?.error && <Message succes={false} children={content[endpoint].error.message} />}
       {loading && <Loading />}
       {content[endpoint]?.results && (
         <Grid>

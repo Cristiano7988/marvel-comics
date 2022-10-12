@@ -6,16 +6,19 @@ const useContent = (newContent = []) => {
   const [content, setContent] = useState(newContent);
 
   useEffect(() => {
-    if (!content.length)
+    if (!content.length) {
       data.map((item) =>
-        getData(item).then(({ results, data }) => {
-          content[item] = {
+        getData(item)
+        .then(({ results, data, error }) => {
+          newContent[item] = {
             results,
             data,
+            error
           };
-          setContent({ ...content });
+          setContent({ ...newContent });
         })
       );
+    }
   }, []);
 
   return [content, setContent];
