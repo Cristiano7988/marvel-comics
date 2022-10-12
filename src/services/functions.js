@@ -16,12 +16,12 @@ const getData = async (endpoint, offset, privateKey = "d8a5a0870bfbd36aa551463c3
       if (data.code !== 200) return;
       const { results } = data.data;
 
-      return await { data, results, message: false };
+      return await { data, results, error: false };
     })
     .catch((error) => ({
       data: false,
       results: false,
-      message: error.message,
+      error,
     }));
 };
 

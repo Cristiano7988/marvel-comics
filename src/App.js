@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div>
-      <Content.Provider value={content}>
+      <Content.Provider value={{content}}>
         <AppHeader />
         <AppMain>
           <RouteElement />
