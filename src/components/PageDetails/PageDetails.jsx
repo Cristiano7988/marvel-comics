@@ -8,6 +8,7 @@ import {
   GiantCardContent,
   GiantPicture,
   Image,
+  Loading,
   Message,
 } from "../Styles/Styles";
 
@@ -18,26 +19,29 @@ const PageDetails = ({ endpoint }) => {
   const [request, setRequest] = useState(false);
   const [product, setProduct] = useState(false);
   const [message, setMessage] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (request.code === 200) return;
     if (product) return;
+    setLoading(true);
 
-    getData(endpoint + "/" + id).then(
-      ({ data, results, message }) => {
-        setRequest(data);
-        setProduct(results[0]);
-        setTitle(results && (results[0].name || results[0].title || results[0].fullName));
-        if (results && results[0].thumbnail) setThumbnail(results[0].thumbnail.path.replace("http", "https") + "." + results[0].thumbnail.extension);
-        setMessage(message);
-      }
-    );
+    getData(endpoint + "/" + id)
+    .then(({ data, results, message }) => {
+      setRequest(data);
+      setProduct(results[0]);
+      setTitle(results && (results[0].name || results[0].title || results[0].fullName));
+      if (results && results[0].thumbnail) setThumbnail(results[0].thumbnail.path.replace("http", "https") + "." + results[0].thumbnail.extension);
+      setMessage(message);
+    })
+    .then(()=> setLoading(false));
   }, [endpoint, product, request.code]);
 
   return (
     <>
       {title && <h1>{title}</h1>}
       {message && <Message success={false} children={message} />}
+      {loading && <Loading />}
       {product && <GiantCard>
         <div>
           {thumbnail && (

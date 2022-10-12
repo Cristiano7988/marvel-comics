@@ -12,6 +12,7 @@ import {
   Paginate,
   Message,
   Button,
+  Loading,
 } from "../Styles/Styles";
 
 const Page = ({ endpoint, defaultValue }) => {
@@ -19,6 +20,7 @@ const Page = ({ endpoint, defaultValue }) => {
   const [request, setRequest] = useState(defaultValue.request);
   const [list, setList] = useState(defaultValue.list);
   const [message, setMessage] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (title === endpoint) return;
@@ -31,22 +33,28 @@ const Page = ({ endpoint, defaultValue }) => {
   useEffect(() => {
     if (request.code === 200) return;
     if (list) return;
+    setLoading(true);
 
-    if(!list) getData(endpoint).then(({ data, results, message }) => {
+    if(!list) getData(endpoint)
+    .then(({ data, results, message }) => {
       setRequest(data);
       setList(results);
       setMessage(message);
-    });
+    })
+    .then(() => setLoading(false));
   }, [endpoint, list, request.code]);
 
   const handlePageClick = ({selected}) => {
     setList([]);
+    setLoading(true);
 
-    getData(endpoint, selected * request.data.limit).then(({ data, results, message }) => {
+    getData(endpoint, selected * request.data.limit)
+    .then(({ data, results, message }) => {
       setRequest(data);
       setList(results);
       setMessage(message);
-    });
+    })
+    .then(()=> setLoading(false));
   };
 
   
@@ -55,6 +63,7 @@ const Page = ({ endpoint, defaultValue }) => {
     <>
       <H1>{endpoint}</H1>
       {message && <Message succes={false} children={message} />}
+      {loading && <Loading />}
       {list && (
         <Grid>
           {list.map((item) => {
