@@ -1,8 +1,10 @@
 /// <reference types="cypress" />
 import endpoints from "../../fixtures/endpoints.json";
 
-// Insert the private key in line 16
-["Without", "with"].map((test) => {
+[
+  // "Without",
+  "with"
+].map((test) => {
   const havePrivateKey = test === "with";
 
   context(`Navigation - ${test} private key`, () => {
@@ -13,7 +15,7 @@ import endpoints from "../../fixtures/endpoints.json";
     endpoints.map(({ endpoint }) => {
       describe(endpoint, () => {
         it("Click && Refresh, get data, show content", () => {
-          if (havePrivateKey) cy.get("input[type=text]").type("Insert Here the private key before run the test");
+          if (havePrivateKey) cy.get("input[type=text]").type("d8a5a0870bfbd36aa551463c3bb67fd2d0cb6c24");
           cy.clickedTab(endpoint, havePrivateKey);
         });
       });

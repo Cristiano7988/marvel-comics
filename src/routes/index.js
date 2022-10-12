@@ -5,7 +5,7 @@ import Page from "../components/Page";
 import PageDetails from "../components/PageDetails";
 import endpoints from "../static/tabs.json";
 
-const RouteElement = ({ privateKey }) => (
+const RouteElement = () => (
   <Router basename={process.env.PUBLIC_URL}>
     <NavigationBar />
 
@@ -17,7 +17,6 @@ const RouteElement = ({ privateKey }) => (
             exact
             element={
               <Page
-                privateKey={privateKey}
                 endpoint={endpoint}
                 defaultValue={{ list: false, request: false }}
               />
@@ -28,7 +27,6 @@ const RouteElement = ({ privateKey }) => (
             element={
               <PageDetails
                 endpoint={endpoint}
-                privateKey={privateKey}
               />
             }
           />

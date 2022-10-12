@@ -11,7 +11,7 @@ import {
   Message,
 } from "../Styles/Styles";
 
-const PageDetails = ({ endpoint, privateKey }) => {
+const PageDetails = ({ endpoint }) => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -23,7 +23,7 @@ const PageDetails = ({ endpoint, privateKey }) => {
     if (request.code === 200) return;
     if (product) return;
 
-    getData(endpoint + "/" + id, privateKey).then(
+    getData(endpoint + "/" + id).then(
       ({ data, results, message }) => {
         setRequest(data);
         setProduct(results[0]);

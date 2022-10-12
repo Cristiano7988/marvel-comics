@@ -14,7 +14,7 @@ import {
   Button,
 } from "../Styles/Styles";
 
-const Page = ({ endpoint, defaultValue, privateKey }) => {
+const Page = ({ endpoint, defaultValue }) => {
   const [title, setTitle] = useState(endpoint);
   const [request, setRequest] = useState(defaultValue.request);
   const [list, setList] = useState(defaultValue.list);
@@ -32,7 +32,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
     if (request.code === 200) return;
     if (list) return;
 
-    getData(endpoint, privateKey).then(({ data, results, message }) => {
+    if(!list) getData(endpoint).then(({ data, results, message }) => {
       setRequest(data);
       setList(results);
       setMessage(message);
@@ -42,7 +42,7 @@ const Page = ({ endpoint, defaultValue, privateKey }) => {
   const handlePageClick = ({selected}) => {
     setList([]);
 
-    getData(endpoint, privateKey, selected * request.data.limit).then(({ data, results, message }) => {
+    getData(endpoint, selected * request.data.limit).then(({ data, results, message }) => {
       setRequest(data);
       setList(results);
       setMessage(message);
