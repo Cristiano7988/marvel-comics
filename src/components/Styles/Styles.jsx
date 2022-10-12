@@ -2,8 +2,28 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LogoImage from "../../static/marvel-logo.png";
 import ReactPaginate from "react-paginate";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const
+  Loading = styled(AiOutlineLoading3Quarters)`
+    width: 30px;
+    height: 30px;
+    color: darkred;
+    margin: 40px;
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: Loading-spin infinite 1s linear;
+    }
+
+    @keyframes Loading-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  `,
   Button = styled.button`
     margin: 10px;
     padding: 10px;
@@ -263,6 +283,7 @@ const
   `;
 
 export {
+  Loading,
   Button,
   Message,
   Paginate,
