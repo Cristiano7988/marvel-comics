@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Content from "../../contexts/Content";
+import useContent from "../../hooks/useContent";
 import { getData } from "../../services/functions";
 import {
   Card,
@@ -16,42 +18,23 @@ import {
 } from "../Styles/Styles";
 
 const Page = ({ endpoint, defaultValue }) => {
-  const [title, setTitle] = useState(endpoint);
-  const [request, setRequest] = useState(defaultValue.request);
-  const [list, setList] = useState(defaultValue.list);
   const [message, setMessage] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (title === endpoint) return;
-
-    setTitle(endpoint);
-    setRequest(defaultValue.request);
-    setList(defaultValue.list);
-  }, [title, endpoint, defaultValue.request, defaultValue.list]);
-
-  useEffect(() => {
-    if (request.code === 200) return;
-    if (list) return;
-    setLoading(true);
-
-    if(!list) getData(endpoint)
-    .then(({ data, results, message }) => {
-      setRequest(data);
-      setList(results);
-      setMessage(message);
-    })
-    .then(() => setLoading(false));
-  }, [endpoint, list, request.code]);
+  const [loading, setLoading] = useState(false);
+  const newContent = useContext(Content);
+  const [content, setContent] = useContent(newContent);
 
   const handlePageClick = ({selected}) => {
-    setList([]);
+    content[endpoint].results = [];
+    setContent(content);
     setLoading(true);
 
-    getData(endpoint, selected * request.data.limit)
+    getData(endpoint, selected * content[endpoint].data.data.limit)
     .then(({ data, results, message }) => {
-      setRequest(data);
-      setList(results);
+      content[endpoint] = {
+        results,
+        data
+      };
+      setContent(content);
       setMessage(message);
     })
     .then(()=> setLoading(false));
@@ -64,9 +47,9 @@ const Page = ({ endpoint, defaultValue }) => {
       <H1>{endpoint}</H1>
       {message && <Message succes={false} children={message} />}
       {loading && <Loading />}
-      {list && (
+      {content[endpoint]?.results && (
         <Grid>
-          {list.map((item) => {
+          {content[endpoint].results.map((item) => {
             const id = item.id;
             const title = item.name || item.title || item.fullName;
             const thumbnail =
@@ -82,11 +65,10 @@ const Page = ({ endpoint, defaultValue }) => {
                         <Image src={thumbnail} alt={title} title={title} />
                       </Picture>
                     )}
-                    {title && (
-                      <ContainerTitle positionAbsolute={endpoint !== "stories"}>
-                        <H2>{title}</H2>
-                      </ContainerTitle>
-                    )}
+                    
+                    <ContainerTitle positionAbsolute={endpoint !== "stories"}>
+                      <H2>{title}</H2>
+                    </ContainerTitle>
                   </Card>
                 </GridItem>
               )
@@ -94,15 +76,15 @@ const Page = ({ endpoint, defaultValue }) => {
           })}
         </Grid>
       )}
-      {request && <Paginate
+      {content[endpoint]?.data && <Paginate
         nextLabel=">"
         previousLabel="<"
         onPageChange={handlePageClick}
         pageRangeDisplayed={0}
         marginPagesDisplayed={1}
-        pageCount={Math.ceil(request.data.total / request.data.limit)}
+        pageCount={Math.ceil(content[endpoint].data.data.total / content[endpoint].data.data.limit)}
       />}
-      {request && <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />}
+      {content[endpoint]?.data?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: content[endpoint].data.attributionHTML }} />}
     </>
   );
 };
