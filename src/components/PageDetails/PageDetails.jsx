@@ -69,7 +69,7 @@ const PageDetails = ({ endpoint }) => {
               { item: "End", possibilities: ["end", "endYear"] }
             ].map(({ item, possibilities }, index) => (
               <Detail
-                key={index}
+                key={"detail"+index}
                 product={product}
                 item={item}
                 possibilities={possibilities}

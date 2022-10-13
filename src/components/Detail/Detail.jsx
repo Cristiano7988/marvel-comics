@@ -12,7 +12,7 @@ const Detail = ({ item, product, possibilities, thumbnail }) => {
     return treatedData ? (
       treatedData.map(({ price, url, type, extension, path, createList, items }, index) =>
         (price && type === "printPrice") || (url && type) || (path && extension) || createList ? (
-          <p style={path && extension && {display: "inline-block"}} key={index}>
+          <p style={path && extension && {display: "inline-block"}} key={"treatedData"+index}>
             {item && <b>{item}: </b>}
             
             {items
