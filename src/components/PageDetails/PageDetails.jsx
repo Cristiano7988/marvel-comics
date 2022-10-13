@@ -38,7 +38,7 @@ const PageDetails = ({ endpoint }) => {
   }, [endpoint, product, request.code]);
 
   return (
-    <>
+    <section>
       {title && <h1>{title}</h1>}
       {error && <Message success={false} children={error.message} />}
       {loading && <Loading />}
@@ -85,7 +85,7 @@ const PageDetails = ({ endpoint }) => {
         </div>
       </GiantCard>}
       {request?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />}
-    </>
+    </section>
   );
 };
 

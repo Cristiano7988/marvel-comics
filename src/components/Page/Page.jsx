@@ -43,7 +43,7 @@ const Page = ({ endpoint }) => {
   
 
   return (
-    <>
+    <section>
       <H1>{endpoint} {content[endpoint]?.selected}</H1>
       {content[endpoint]?.error && <Message succes={false} children={content[endpoint].error.message} />}
       {loading && <Loading />}
@@ -84,8 +84,8 @@ const Page = ({ endpoint }) => {
         marginPagesDisplayed={1}
         pageCount={Math.ceil(content[endpoint].data.data.total / content[endpoint].data.data.limit)}
       />}
-      {content[endpoint]?.data?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: content[endpoint].data.attributionHTML }} />}
-    </>
+      {!!content[endpoint]?.results?.length && content[endpoint]?.data?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: content[endpoint].data.attributionHTML }} />}
+    </section>
   );
 };
 

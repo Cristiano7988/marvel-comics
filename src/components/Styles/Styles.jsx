@@ -118,7 +118,6 @@ const
   `,
   AppMain = styled.main`
     background-color: white;
-    min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: black;
     text-align: center;
