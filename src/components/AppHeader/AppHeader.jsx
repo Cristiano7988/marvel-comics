@@ -11,7 +11,7 @@ const AppHeader = () => {
   const [content] = useContent();
 
   useEffect(() => {
-      if (!content?.events?.results?.length) return;
+      if (content?.events?.results?.length) return;
 
       setInterval(() => {
         setRandomIndex(generateRandomIndex(content.events.results))
