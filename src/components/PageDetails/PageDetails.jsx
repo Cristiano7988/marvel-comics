@@ -38,7 +38,7 @@ const PageDetails = ({ endpoint }) => {
   }, [endpoint, product, request.code]);
 
   return (
-    <>
+    <section>
       {title && <h1>{title}</h1>}
       {error && <Message success={false} children={error.message} />}
       {loading && <Loading />}
@@ -69,7 +69,7 @@ const PageDetails = ({ endpoint }) => {
               { item: "End", possibilities: ["end", "endYear"] }
             ].map(({ item, possibilities }, index) => (
               <Detail
-                key={index}
+                key={"detail"+index}
                 product={product}
                 item={item}
                 possibilities={possibilities}
@@ -85,7 +85,7 @@ const PageDetails = ({ endpoint }) => {
         </div>
       </GiantCard>}
       {request?.attributionHTML && <Button dangerouslySetInnerHTML={{ __html: request.attributionHTML }} />}
-    </>
+    </section>
   );
 };
 
