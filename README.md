@@ -3,6 +3,8 @@
 This project is part of a test. It was made with React.js.\
 All content in this app is provided by Marvel's api.
 
+You can access the page in: [https://cristiano7988.github.io/marvel-comics/](https://cristiano7988.github.io/marvel-comics/) \
+
 ## 
 
 Comecei este projeto focado em consumir a api para conhecer ela melhor.\
