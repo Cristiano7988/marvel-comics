@@ -213,6 +213,7 @@ const
     display: flex;
     color: white;
     text-decoration: none;
+    width: 100%;
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       padding: 20px;
